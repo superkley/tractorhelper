@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/text_gamestart_title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="14sp" />
+
+    <GridView
+        android:id="@+id/grid_sets"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:layoutAnimation="@anim/layout_grid_sets"
+        android:numColumns="3"
+        android:padding="10dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" >
+    </GridView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="left"
+        android:horizontalSpacing="2dp"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:verticalSpacing="2dp" >
+
+        <Button
+            android:id="@+id/btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:onClick="previousStep"
+            android:text="@string/btn_prev"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+
+         <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="2dp"
+            android:stretchColumns="1"
+            android:visibility="invisible" >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_setting_sets"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_setting_level"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_setting_trump"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_info_cardsleft"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_info_pointsleft"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:text="@string/text_info_pointsgained"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/text_setting_sets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+
+                <TextView
+                    android:id="@+id/text_setting_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+
+                <TextView
+                    android:id="@+id/text_setting_trump"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+
+                <TextView
+                    android:id="@+id/text_info_cardsleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+
+                <TextView
+                    android:id="@+id/text_info_pointsleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+
+                <TextView
+                    android:id="@+id/text_info_pointsgained"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="2dp"
+                    android:background="@color/color_infobox"
+                    android:gravity="center"
+                    android:textSize="10sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="?android:attr/textColorSecondary"
+                     />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>
