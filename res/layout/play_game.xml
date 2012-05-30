@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:background="@color/color_board"
         android:orientation="vertical"
-        android:verticalSpacing="2dp" >
+        android:verticalSpacing="3dp" >
 
         <HorizontalScrollView
             android:id="@+id/hsv_trump"
@@ -100,20 +100,18 @@
         android:gravity="left"
         android:horizontalSpacing="2dp"
         android:orientation="horizontal"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
+        android:paddingBottom="0dp"
+        android:paddingTop="0dp"
         android:verticalSpacing="2dp" >
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_prev"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:onClick="previousStep"
-            android:text="@string/btn_prev"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="18sp" />
+            android:contentDescription="@string/btn_prev"
+            android:src="@drawable/step_back" />
 
         <TableLayout
             android:layout_width="0dp"
@@ -124,7 +122,6 @@
             android:stretchColumns="1" >
 
             <TableRow>
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="20dp"
@@ -201,6 +198,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="12sp"
+                     android:visibility="gone"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -276,6 +274,7 @@
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
+                     android:visibility="gone"
                     android:textSize="10sp" />
             </TableRow>
         </TableLayout>

@@ -21,13 +21,13 @@ public enum Suit {
 
     public static final Suit fromId(final int suitId) {
         switch (suitId) {
-        case 0:
-            return SPADE;
-        case 1:
-            return HEART;
-        case 2:
-            return CLUB;
         case 3:
+            return SPADE;
+        case 2:
+            return HEART;
+        case 1:
+            return CLUB;
+        case 0:
             return DIAMOND;
         default:
             return JOKER;

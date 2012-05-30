@@ -64,16 +64,8 @@ public class SelectTrumpActivity extends Activity {
                 trump = Suit.JOKER;
             }
             final String name = GameHelper.getTrumpName(trump, SelectTrumpActivity.this.level);
-            ValuedButton btn = new ValuedButton(SelectTrumpActivity.this);
-            btn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-            btn.setValue(trump.id);
-            String color = GameHelper.getColorString(trump.color.color);
-            btn.setText(Html
-                    .fromHtml("<b>" + name + "<br/><font color='" + color + "'>" + trump.symbol + "</font></b>"));
-            btn.setOnClickListener(trumpClickListener);
-            final int w = (int) AndroidHelper.convertDpToPixel(64, SelectTrumpActivity.this);
-            btn.setLayoutParams(new GridView.LayoutParams(w, (int) (w * 1.3)));
-            return btn;
+            final String color = GameHelper.getColorString(trump.color.color);           
+            return new ValuedButton(SelectTrumpActivity.this, 64,trump.id,"<b>" + name + "<br/><font color='" + color + "'>" + trump.symbol + "</font></b>", trumpClickListener);
         }
 
         public final int getCount() {
@@ -99,13 +91,13 @@ public class SelectTrumpActivity extends Activity {
     public void nextStep(final View view) {
         if (view instanceof ValuedButton) {
             final Suit trump = Suit.fromId(((ValuedButton) view).getValue());
-            String color = GameHelper.getColorString(trump.color.color);
+            final String color = GameHelper.getColorString(trump.color.color);
             final String name = GameHelper.getTrumpName(trump, this.level);
             Toast.makeText(
                     this,
                     Html.fromHtml(getResources().getString(R.string.text_cfg)
-                            + getResources().getString(R.string.text_cfg_trump) + "<b>" + name + "<font color='"
-                            + color + "'>" + trump.symbol + "</font></b>"), Toast.LENGTH_SHORT).show();
+                            + getResources().getString(R.string.text_cfg_trump) + "<b><font color='"
+                            + color + "'>" + trump.symbol + "</font>" + name + "</b>"), Toast.LENGTH_SHORT).show();
             nextStep(trump.id);
         }
     }

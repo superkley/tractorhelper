@@ -1,19 +1,23 @@
 package cn.kk.tractorhelper.game;
 
+import java.util.BitSet;
+
 public final class History {
     private static History instance;
 
     public static final int MAX_MEMORIES = 10;
 
-    public final boolean[][] memories;
+    public final BitSet[] memories;
 
     public final int[] points;
+    
+    public final int totalCards;
 
     private int idx = -1;
 
     public static final History get(final int sets) {
         final int totalCards = Card.SET_CARDS * sets;
-        if (instance == null || totalCards != instance.memories[0].length) {
+        if (instance == null || totalCards != instance.totalCards) {
             instance = new History(totalCards);
         } else {
             instance.clear();
@@ -22,28 +26,35 @@ public final class History {
     }
 
     private History(final int totalCards) {
-        this.memories = new boolean[MAX_MEMORIES][totalCards];
+        this.totalCards = totalCards;
+        this.memories = new BitSet[MAX_MEMORIES];
+        for (int i = 0; i < MAX_MEMORIES; i++) {
+            this.memories[i] = new BitSet(totalCards);
+        }
         this.points = new int[MAX_MEMORIES];
     }
 
-    public final void store(final boolean[] played, final int points) {
+    public final void store(final BitSet played, final int points) {
         if (this.idx < MAX_MEMORIES - 1) {
             this.idx++;
         } else {
-            final boolean[] tmp = this.memories[0];
+            final BitSet tmp = this.memories[0];
             for (int i = 0; i < MAX_MEMORIES - 1; i++) {
                 this.memories[i] = this.memories[i + 1];
                 this.points[i] = this.points[i + 1];
             }
             this.memories[this.idx] = tmp;
         }
-        System.arraycopy(played, 0, this.memories[this.idx], 0, played.length);
+        final BitSet selected = this.memories[this.idx];
+        selected.clear();
+        selected.or(played);
         this.points[this.idx] = points;
     }
 
-    public final synchronized int restore(final boolean[] played) {
+    public final synchronized int restore(final BitSet played) {
         if (hasHistory()) {
-            System.arraycopy(this.memories[this.idx], 0, played, 0, played.length);
+            played.clear();
+            played.or(this.memories[this.idx]);
             return this.points[this.idx--];
         }
         return -1;
@@ -55,9 +66,5 @@ public final class History {
 
     public final void clear() {
         this.idx = -1;
-    }
-
-    public final void store(final boolean[] played) {
-        store(played, 0);
     }
 }
