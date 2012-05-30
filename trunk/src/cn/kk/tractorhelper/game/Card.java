@@ -16,8 +16,10 @@ public final class Card {
     public final int name;
 
     public final int points;
+    
+    public final int idx;
 
-    private Card(final Suit suit, final int name) {
+    private Card(final Suit suit, final int name, final int idx) {
         this.suit = suit;
         this.name = name;
         switch (name) {
@@ -31,6 +33,7 @@ public final class Card {
         default:
             this.points = 0;
         }
+        this.idx = idx;
     }
 
     @Override
@@ -49,9 +52,9 @@ public final class Card {
         case 13:
             return "K";
         case BLACK_JOKER_NAME:
-            return "小";
+            return "小<br />鬼";
         case COLOR_JOKER_NAME:
-            return "大";
+            return "大<br />鬼";
         case LEVEL_JOKER:
             return "无主";
         default:
@@ -70,7 +73,7 @@ public final class Card {
         }
         Card result = ALL_CARDS[idx];
         if (result == null) {
-            result = new Card(suit, cardName);
+            result = new Card(suit, cardName, idx);
             ALL_CARDS[idx] = result;
         }
         return result;
@@ -93,4 +96,8 @@ public final class Card {
         }
         return String.valueOf(sets);
     }
+
+	public static Card from(final int id) {
+		return ALL_CARDS[id];
+	}
 }

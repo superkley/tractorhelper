@@ -137,6 +137,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -212,6 +213,7 @@
                     android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
+                    android:visibility="gone"
                      />
             </TableRow>
         </TableLayout>

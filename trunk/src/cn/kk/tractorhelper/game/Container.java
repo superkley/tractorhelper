@@ -2,17 +2,20 @@ package cn.kk.tractorhelper.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 
 public final class Container {
     private static Container instance;
 
     public final Card[] cards;
 
-    public final boolean[] played;
+    public final BitSet played;
+
+    public final int totalCards;
 
     public static final Container get(final int sets) {
         final int totalCards = Card.SET_CARDS * sets;
-        if (instance == null || instance.cards.length != totalCards) {
+        if (instance == null || instance.totalCards != totalCards) {
             instance = new Container(totalCards);
         } else {
             instance.clear();
@@ -21,8 +24,9 @@ public final class Container {
     }
 
     private Container(final int totalCards) {
+        this.totalCards = totalCards;
         this.cards = new Card[totalCards];
-        this.played = new boolean[totalCards];
+        this.played = new BitSet(totalCards);
         initialize();
     }
 
@@ -48,41 +52,41 @@ public final class Container {
     }
 
     public final void clear() {
-        Arrays.fill(this.played, false);
+        this.played.clear();
     }
 
     public final Card[] get(final Suit suit, final int level, final Suit trump) {
         final ArrayList<Card> result = new ArrayList<Card>();
         if (suit == Suit.JOKER) {
             // jokers
-            for (int i = 0; i < cards.length; i++) {
+            for (int i = 0; i < totalCards; i++) {
                 final Card card = cards[i];
-                if (!played[i] && card.suit == Suit.JOKER) {
+                if (!this.played.get(i) && card.suit == Suit.JOKER) {
                     result.add(card);
                 }
             }
             if (level != Card.LEVEL_JOKER) {
                 if (trump != Suit.JOKER) {
                     // color level trumps
-                    for (int i = 0; i < cards.length; i++) {
+                    for (int i = 0; i < totalCards; i++) {
                         final Card card = cards[i];
-                        if (!played[i] && card.suit == trump && card.name == level) {
+                        if (!this.played.get(i) && card.suit == trump && card.name == level) {
                             result.add(card);
                         }
                     }
                 }
                 // level trumps
-                for (int i = 0; i < cards.length; i++) {
+                for (int i = 0; i < totalCards; i++) {
                     final Card card = cards[i];
-                    if (!played[i] && card.suit != trump && card.name == level) {
+                    if (!this.played.get(i) && card.suit != trump && card.name == level) {
                         result.add(card);
                     }
                 }
                 if (trump != Suit.JOKER) {
                     // normal trumps
-                    for (int i = 0; i < cards.length; i++) {
+                    for (int i = 0; i < totalCards; i++) {
                         final Card card = cards[i];
-                        if (!played[i] && card.name != level && card.suit == trump) {
+                        if (!this.played.get(i) && card.name != level && card.suit == trump) {
                             result.add(card);
                         }
                     }
@@ -90,9 +94,9 @@ public final class Container {
             }
             return result.toArray(new Card[result.size()]);
         } else {
-            for (int i = 0; i < cards.length; i++) {
+            for (int i = 0; i < totalCards; i++) {
                 final Card card = cards[i];
-                if (!played[i] && (card.name != level && card.suit == suit)) {
+                if (!this.played.get(i) && (card.name != level && card.suit == suit)) {
                     result.add(card);
                 }
             }
@@ -111,10 +115,10 @@ public final class Container {
     }
 
     public final boolean select(final Card c) {
-        for (int i = 0; i < cards.length; i++) {
+        for (int i = 0; i < totalCards; i++) {
             final Card card = cards[i];
-            if (!played[i] && c == card) {
-                played[i] = true;
+            if (!this.played.get(i) && c == card) {
+                this.played.set(i);
                 return true;
             }
         }
@@ -122,23 +126,23 @@ public final class Container {
     }
 
     public final int countCardsPlayed() {
+        return played.cardinality();
+    }
+
+    public final int countPointsPlayed() {
         int result = 0;
-        for (int i = 0; i < played.length; i++) {
-            if (played[i]) {
-                result++;
+        for (int i = 0; i < totalCards; i++) {
+            final Card card = cards[i];
+            if (played.get(i)) {
+                result += card.points;
             }
         }
         return result;
     }
 
-    public final int countPointsPlayed() {
-        int result = 0;
-        for (int i = 0; i < cards.length; i++) {
-            final Card card = cards[i];
-            if (played[i]) {
-                result += card.points;
-            }
-        }
-        return result;
+
+    public final void copyPlayed(BitSet played) {
+    	this.played.clear();
+    	this.played.or(played);
     }
 }

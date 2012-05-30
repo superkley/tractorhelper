@@ -38,16 +38,14 @@
         android:paddingTop="2dp"
         android:verticalSpacing="2dp" >
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_prev"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+            android:contentDescription="@string/btn_prev"
             android:gravity="center"
             android:onClick="previousStep"
-            android:text="@string/btn_prev"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="18sp" />
+            android:src="@drawable/step_back" />
 
         <TableLayout
             android:layout_width="0dp"
@@ -139,11 +137,10 @@
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
             </TableRow>
 
             <TableRow>
-
                 <TextView
                     android:id="@+id/text_setting_sets"
                     android:layout_width="0dp"
@@ -170,10 +167,10 @@
 
                 <TextView
                     android:id="@+id/text_setting_trump"
-                    android:layout_width="0dp"                    
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_margin="2dp"
+                    android:layout_weight="1"
                     android:background="@color/color_infobox"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -183,10 +180,10 @@
 
                 <TextView
                     android:id="@+id/text_info_cardsleft"
-                    android:layout_width="0dp"                    
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_margin="2dp"
+                    android:layout_weight="1"
                     android:background="@color/color_infobox"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -196,10 +193,10 @@
 
                 <TextView
                     android:id="@+id/text_info_pointsleft"
-                    android:layout_width="0dp"                    
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_margin="2dp"
+                    android:layout_weight="1"
                     android:background="@color/color_infobox"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -209,16 +206,16 @@
 
                 <TextView
                     android:id="@+id/text_info_pointsgained"
-                    android:layout_width="0dp"                    
-                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:layout_margin="2dp"
+                    android:layout_weight="1"
                     android:background="@color/color_infobox"
                     android:gravity="center"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="10sp"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

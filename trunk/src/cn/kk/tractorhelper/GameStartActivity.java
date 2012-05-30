@@ -47,14 +47,7 @@ public class GameStartActivity extends Activity {
 
     public class SetsAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
-            ValuedButton btn = new ValuedButton(GameStartActivity.this);
-            btn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-            btn.setValue(position + 1);
-            btn.setText(Html.fromHtml(getResources().getString(TEXTS[position])));
-            btn.setOnClickListener(setsClickListener);
-            final int w = (int) AndroidHelper.convertDpToPixel(64, GameStartActivity.this);
-            btn.setLayoutParams(new GridView.LayoutParams(w, (int) (w * 1.3)));
-            return btn;
+            return new ValuedButton(GameStartActivity.this, 64, position + 1, getResources().getString(TEXTS[position]), setsClickListener);
         }
 
         public final int getCount() {
@@ -73,6 +66,7 @@ public class GameStartActivity extends Activity {
     public void nextStep(final View view) {
         if (view instanceof ValuedButton) {
             final int sets = ((ValuedButton) view).getValue();
+            getPreferences(Activity.MODE_PRIVATE).edit().putInt(MyIntents.SETS, sets).commit();
             Toast.makeText(
                     this,
                     getResources().getString(R.string.text_cfg) + String.valueOf(sets)
@@ -89,8 +83,7 @@ public class GameStartActivity extends Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
-        getPreferences(Activity.MODE_PRIVATE).edit().putInt(MyIntents.SETS, 2).commit();
+        super.onPause();        
     }
 
     @Override
