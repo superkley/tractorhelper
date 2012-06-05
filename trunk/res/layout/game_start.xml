@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/bg_pattern_1"
     android:orientation="vertical" >
 
     <TextView
@@ -50,7 +51,7 @@
             android:textSize="18sp"
             android:visibility="invisible" />
 
-         <TableLayout
+        <TableLayout
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -137,8 +138,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="12sp"
-                    android:visibility="gone"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </TableRow>
 
             <TableRow>
@@ -150,10 +151,9 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                     />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/text_setting_level"
@@ -162,10 +162,9 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                     />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/text_setting_trump"
@@ -174,10 +173,9 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                     />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/text_info_cardsleft"
@@ -186,10 +184,9 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                     />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/text_info_pointsleft"
@@ -198,10 +195,9 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                     />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/text_info_pointsgained"
@@ -210,11 +206,10 @@
                     android:layout_margin="2dp"
                     android:background="@color/color_infobox"
                     android:gravity="center"
-                    android:textSize="10sp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:visibility="gone"
-                     />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

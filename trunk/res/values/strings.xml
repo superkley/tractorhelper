@@ -8,7 +8,7 @@
     <string name="text_chooselevel_title">选择打几</string>
     <string name="text_selecttrump_title">选择主</string>
     <string name="btn_prev">‹ 重置</string>
-    <string name="app_name">升级记牌器 v1.0</string>
+    <string name="app_name">升级记牌器</string>
     <string name="text_cfg">设置：</string>
     <string name="text_cfg_sets">副牌</string>
     <string name="text_cfg_level">打</string>
