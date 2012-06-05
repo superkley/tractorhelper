@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/bg_pattern_4"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -11,7 +12,7 @@
         android:layout_weight="1"
         android:background="@color/color_board"
         android:orientation="vertical"
-        android:verticalSpacing="3dp" >
+        android:verticalSpacing="2dp" >
 
         <HorizontalScrollView
             android:id="@+id/hsv_trump"

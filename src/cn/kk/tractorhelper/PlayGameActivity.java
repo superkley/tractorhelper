@@ -1,3 +1,23 @@
+/*  Copyright (c) 2010 Xiaoyun Zhu
+ * 
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy  
+ *  of this software and associated documentation files (the "Software"), to deal  
+ *  in the Software without restriction, including without limitation the rights  
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+ *  copies of the Software, and to permit persons to whom the Software is  
+ *  furnished to do so, subject to the following conditions:
+ *  
+ *  The above copyright notice and this permission notice shall be included in  
+ *  all copies or substantial portions of the Software.
+ *  
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  
+ *  THE SOFTWARE.  
+ */
 package cn.kk.tractorhelper;
 
 import java.util.BitSet;
@@ -14,6 +34,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -165,9 +186,7 @@ public class PlayGameActivity extends Activity {
 
 	private OnLongClickListener clearHistoryClickListener = new OnLongClickListener() {
 		public boolean onLongClick(View paramView) {
-			game.clearHistory();
-			btnPrev.setImageDrawable(getResources().getDrawable(
-					R.drawable.step_back));
+			askForNewGame();
 			return true;
 		}
 	};
@@ -183,7 +202,7 @@ public class PlayGameActivity extends Activity {
 					runOnUiThread(checkCards);
 				}
 			};
-			timer.schedule(checkCardsTask, 1500);
+			timer.schedule(checkCardsTask, 1000);
 		}
 	};
 
@@ -337,7 +356,7 @@ public class PlayGameActivity extends Activity {
 					.append("</font>");
 		}
 		ScoredValuedButton btn = new ScoredValuedButton(PlayGameActivity.this,
-				32, c.idx, btnText.toString(), null, tSize, amount);
+				5, c.idx, btnText.toString(), null, tSize, amount);
 		btn.setOnClickListener(playGameClickListener);
 		return btn;
 	}
@@ -413,5 +432,16 @@ public class PlayGameActivity extends Activity {
 		infoText.append(String.valueOf(this.game.getPointsGained())).append(
 				resources.getString(R.string.text_point_unit));
 		this.textInfoPointsGained.setText(infoText.toString());
+	}
+	
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			previousStep(null);
+			return true;
+		} else {
+			return super.onKeyDown(keyCode, event);
+		}
 	}
 }
