@@ -73,7 +73,7 @@ public class GameStartActivity extends Activity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return new ValuedButton(GameStartActivity.this, 2, position + 1,
 					getResources().getString(TEXTS[position]),
-					setsClickListener);
+					setsClickListener, 0.6f);
 		}
 
 		public final int getCount() {

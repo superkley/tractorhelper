@@ -24,6 +24,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Paint.FontMetrics;
 import android.graphics.Paint.Style;
 import android.text.Html;
 import android.text.Spanned;
@@ -33,52 +34,64 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ToggleButton;
 import cn.kk.tractorhelper.R;
+import cn.kk.tractorhelper.game.Card;
+import cn.kk.tractorhelper.game.Suit;
 import cn.kk.tractorhelper.helper.AndroidHelper;
 
 public class ValuedButton extends ToggleButton {
-	private int value;
-	private static int displayHeight = -1;
+    private int value;
+    protected int width;
+    protected int height;
+    private static int displayHeight = -1;
+    protected float textSize;
 
-	public ValuedButton(Context context, int rows, int value, String html,
-			OnClickListener setsClickListener) {
-		super(context);
-		setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_card));
-		setValue(value);
-		Spanned text = Html.fromHtml(html);
-		setText(text);
-		setTextOn(text);
-		setTextOff(text);
-		setOnClickListener(setsClickListener);
+    public ValuedButton(Context context, int rows, int value, String html, OnClickListener setsClickListener) {
+        super(context);
+        setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_card));
+        setValue(value);
+        Spanned text = Html.fromHtml(html);
+        setText(text);
+        setTextOn(text);
+        setTextOff(text);
+        setOnClickListener(setsClickListener);
 
-		if (displayHeight == -1) {
-			WindowManager wm = (WindowManager) context
-					.getSystemService(Context.WINDOW_SERVICE);
-			Display display = wm.getDefaultDisplay();
-			displayHeight = display.getHeight();
-		}
+        if (displayHeight == -1) {
+            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            displayHeight = display.getHeight();
+        }
+        int w;
+        int h;
+        switch (rows) {
+        case 1:
+        case 2:
+            h = (int) (displayHeight / 4.0);
+            w = (int) (h / 1.3);
+            break;
+        default:
+            h = (int) (displayHeight / (rows + 2.0));
+            w = (int) (h / 1.3);
+        }
+        this.width = w;
+        this.height = h;            
+        this.textSize = this.height * 0.15f;
+        
+        setTextSize(this.textSize);
+        setLayoutParams(new GridView.LayoutParams(this.width, this.height));
 
-		int w;
-		int h;
-		switch (rows) {
-		case 1:
-		case 2:
-			h = (int) (displayHeight / 4.0);
-			w = (int) (h / 1.3);
-			break;
-		default:
-			h = (int) (displayHeight / (rows + 2.0));
-			w = (int) (h / 1.3);
-		}
-		setLayoutParams(new GridView.LayoutParams(w, h));
+    }
 
-	}
+    public ValuedButton(Context context, int rows, int value, String html, OnClickListener setsClickListener, float relativeFontSize) {
+        this(context, rows, value, html, setsClickListener);
+        setTextSize(this.textSize * relativeFontSize);
+    }
 
-	public int getValue() {
-		return value;
-	}
+    public int getValue() {
+        return value;
+    }
 
-	public void setValue(int value) {
-		this.value = value;
-	}
+    public void setValue(int value) {
+        this.value = value;
+    }
 
 }

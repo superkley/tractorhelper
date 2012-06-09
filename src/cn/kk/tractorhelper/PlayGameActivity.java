@@ -79,7 +79,6 @@ public class PlayGameActivity extends Activity {
 	private LinearLayout lytClub;
 	private LinearLayout lytDiamond;
 	private ImageButton btnPrev;
-	private float sizeText;
 
 	// AsyncTask, MotionEvent
 
@@ -333,13 +332,10 @@ public class PlayGameActivity extends Activity {
 
 	private ScoredValuedButton createCardButton(Card c, int amount) {
 		final String color;
-		float tSize = sizeText;
 		if (c == Card.from(Suit.JOKER, Card.BLACK_JOKER_NAME)) {
 			color = GameHelper.getColorString(0x606060);
-			tSize *= 0.7;
 		} else if (c == Card.from(Suit.JOKER, Card.COLOR_JOKER_NAME)) {
 			color = GameHelper.getColorString(0x609ac0);
-			tSize *= 0.7;
 		} else {
 			color = GameHelper.getColorString(c.suit.color.color);
 		}
@@ -356,7 +352,7 @@ public class PlayGameActivity extends Activity {
 					.append("</font>");
 		}
 		ScoredValuedButton btn = new ScoredValuedButton(PlayGameActivity.this,
-				5, c.idx, btnText.toString(), null, tSize, amount);
+				5, c, btnText.toString(), null, amount);
 		btn.setOnClickListener(playGameClickListener);
 		return btn;
 	}
@@ -388,8 +384,6 @@ public class PlayGameActivity extends Activity {
 		} else {
 			this.game = new Game(this.sets, this.level, this.trump);
 		}
-
-		this.sizeText = AndroidHelper.convertDpToPixel(8, this);
 
 		final String levelName = GameHelper.getLevelName(this.level);
 		StringBuffer settingsText = new StringBuffer();
